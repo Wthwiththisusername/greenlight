@@ -22,27 +22,27 @@ func TestShowMovie(t *testing.T) {
 		wantBody string
 	}{
 		{
-			name:     "Valid ID",
+			name:     "Valid",
 			urlPath:  "/v1/movies/1",
 			wantCode: http.StatusOK,
 		},
 		{
-			name:     "Non-existent ID",
+			name:     "Non-existent",
 			urlPath:  "/v1/movies/2",
 			wantCode: http.StatusNotFound,
 		},
 		{
-			name:     "Negative ID",
-			urlPath:  "/v1/movies/-1",
+			name:     "Negative",
+			urlPath:  "/v1/movies/-5",
 			wantCode: http.StatusNotFound,
 		},
 		{
-			name:     "Decimal ID",
-			urlPath:  "/v1/movies/1.23",
+			name:     "Decimal",
+			urlPath:  "/v1/movies/1.28",
 			wantCode: http.StatusNotFound,
 		},
 		{
-			name:     "String ID",
+			name:     "String",
 			urlPath:  "/v1/movies/foo",
 			wantCode: http.StatusNotFound,
 		},
@@ -71,8 +71,8 @@ func TestCreateMovie(t *testing.T) {
 
 	const (
 		validTitle   = "Test Title"
-		validYear    = 2021
-		validRuntime = "105 mins"
+		validYear    = 2023
+		validRuntime = "98 mins"
 	)
 
 	validGenres := []string{"comedy", "drama"}
@@ -86,7 +86,7 @@ func TestCreateMovie(t *testing.T) {
 		wantCode int
 	}{
 		{
-			name:     "Valid submission",
+			name:     "Valid",
 			Title:    validTitle,
 			Year:     validYear,
 			Runtime:  validRuntime,
@@ -94,7 +94,7 @@ func TestCreateMovie(t *testing.T) {
 			wantCode: http.StatusCreated,
 		},
 		{
-			name:     "Empty Title",
+			name:     "Empty",
 			Title:    "",
 			Year:     validYear,
 			Runtime:  validRuntime,
@@ -102,7 +102,7 @@ func TestCreateMovie(t *testing.T) {
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
-			name:     "year < 1888",
+			name:     "Unvalid year",
 			Title:    validTitle,
 			Year:     1500,
 			Runtime:  validRuntime,
@@ -110,7 +110,7 @@ func TestCreateMovie(t *testing.T) {
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
-			name:     "test for wrong input",
+			name:     "Wrong input",
 			Title:    validTitle,
 			Year:     validYear,
 			Runtime:  validRuntime,
@@ -225,7 +225,7 @@ func TestUpdateMovie(t *testing.T) {
 			wantCode: http.StatusNotFound,
 		},
 		{
-			name:     "invalid ID parameter",
+			name:     "invalid ID",
 			url:      "/v1/movies/s",
 			Title:    "",
 			Year:     validYear,
@@ -234,7 +234,7 @@ func TestUpdateMovie(t *testing.T) {
 			wantCode: http.StatusNotFound,
 		},
 		{
-			name:     "test for wrong input",
+			name:     "wrong input",
 			url:      "/v1/movies/1",
 			Title:    validTitle,
 			Year:     validYear,
@@ -261,7 +261,7 @@ func TestUpdateMovie(t *testing.T) {
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
-			name:     "year < 1888",
+			name:     "unvalid year",
 			url:      "/v1/movies/1",
 			Title:    validTitle,
 			Year:     1500,
@@ -342,7 +342,7 @@ func TestListMovie(t *testing.T) {
 				Page     string
 				PageSize string
 				Sort     string
-			}{Page: "s", PageSize: "s", Sort: ""},
+			}{Page: "p", PageSize: "s", Sort: ""},
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
@@ -359,7 +359,7 @@ func TestListMovie(t *testing.T) {
 		{
 			name:   "Valid",
 			Title:  "Test",
-			Genres: "lol,kek",
+			Genres: "vampires",
 			Filters: struct {
 				Page     string
 				PageSize string
