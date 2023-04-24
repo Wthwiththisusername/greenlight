@@ -80,7 +80,7 @@ func TestRegisterUser(t *testing.T) {
 			if err != nil {
 				t.Fatal("wrong input data")
 			}
-			if tt.name == "test for wrong input" {
+			if tt.name == "Wrong input" {
 				b = append(b, 'a')
 			}
 
@@ -146,7 +146,7 @@ func TestActivateUser(t *testing.T) {
 			if err != nil {
 				t.Fatal("wrong input data")
 			}
-			if tt.name == "test for wrong input" {
+			if tt.name == "wrong input" {
 				b = append(b, 'a')
 			}
 
