@@ -21,32 +21,32 @@ func TestCreateToken(t *testing.T) {
 	}{
 		{
 			name:     "Valid",
-			Email:    "zh.arumandes@gmail.com",
-			Password: "pa55word",
+			Email:    "nargiz@gmail.com",
+			Password: "12345",
 			wantCode: http.StatusCreated,
 		},
 		{
-			name:     "test for wrong input",
-			Email:    "zh.arumandes@gmail.com",
-			Password: "pa55word",
+			name:     "wrong input",
+			Email:    "nargiz@gmail.com",
+			Password: "12345",
 			wantCode: http.StatusBadRequest,
 		},
 		{
 			name:     "failed Validation",
-			Email:    "zh.arumandesgmail.com",
-			Password: "pa55word",
+			Email:    "nargiz@gmail.com",
+			Password: "12345",
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
 			name:     "email not found",
 			Email:    "notfound@gmail.com",
-			Password: "pa55word",
+			Password: "12345",
 			wantCode: http.StatusUnauthorized,
 		},
 		{
 			name:     "password didn't match",
-			Email:    "zh.arumandes@gmail.com",
-			Password: "pa55word1",
+			Email:    "nargiz@gmail.com",
+			Password: "123456",
 			wantCode: http.StatusUnauthorized,
 		},
 	}
