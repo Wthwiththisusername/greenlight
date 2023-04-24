@@ -110,7 +110,7 @@ func TestCreateMovie(t *testing.T) {
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
-			name:     "Wrong input",
+			name:     "wrong input",
 			Title:    validTitle,
 			Year:     validYear,
 			Runtime:  validRuntime,
@@ -137,7 +137,7 @@ func TestCreateMovie(t *testing.T) {
 			if err != nil {
 				t.Fatal("wrong input data")
 			}
-			if tt.name == "test for wrong input" {
+			if tt.name == "wrong input" {
 				b = append(b, 'a')
 			}
 
@@ -171,7 +171,7 @@ func TestDeleteMovie(t *testing.T) {
 			wantCode: http.StatusNotFound,
 		},
 		{
-			name:     "invalid ID parameter",
+			name:     "invalid ID",
 			urlPath:  "/v1/movies/s",
 			wantCode: http.StatusNotFound,
 		},
@@ -200,8 +200,8 @@ func TestUpdateMovie(t *testing.T) {
 
 	const (
 		validTitle   = "Test Title"
-		validYear    = 2021
-		validRuntime = "105 mins"
+		validYear    = 2023
+		validRuntime = "98 mins"
 	)
 	validGenres := []string{"comedy", "drama"}
 
@@ -299,7 +299,7 @@ func TestUpdateMovie(t *testing.T) {
 			if err != nil {
 				t.Fatal("wrong input data")
 			}
-			if tt.name == "test for wrong input" {
+			if tt.name == "wrong input" {
 				b = append(b, 'a')
 			} else if tt.name == "bad json" {
 				b[1] = ','
