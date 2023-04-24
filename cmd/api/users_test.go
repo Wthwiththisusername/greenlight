@@ -25,42 +25,42 @@ func TestRegisterUser(t *testing.T) {
 			name:     "Valid name",
 			Username: "aizhan",
 			Email:    "aizhan@gmail.com",
-			Password: "12345678",
+			Password: "qwerty",
 			wantCode: http.StatusCreated,
 		},
 		{
-			name:     "Wrong input",
-			Username: "zhamal",
-			Email:    "zhamal@gmail.com",
-			Password: "12345678",
+			name:     "wrong input",
+			Username: "aizhan",
+			Email:    "aizhan@gmail.com",
+			Password: "qwerty",
 			wantCode: http.StatusBadRequest,
 		},
 		{
 			name:     "inValid name",
 			Username: "",
-			Email:    "unknown@gmail.com",
-			Password: "12345678",
+			Email:    "aizhan@gmail.com",
+			Password: "qwerty",
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
 			name:     "inValid email",
-			Username: "lashyn",
+			Username: "aizhan",
 			Email:    "",
-			Password: "12345678",
+			Password: "qwerty",
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
 			name:     "inValid password",
 			Username: "aizhan",
 			Email:    "aizhan@gmail.com",
-			Password: "123456",
+			Password: "abcdef",
 			wantCode: http.StatusUnprocessableEntity,
 		},
 		{
 			name:     "Duplicated",
-			Username: "nargiz",
+			Username: "aizhan",
 			Email:    "nargizazat7@gmail.com",
-			Password: "12345678",
+			Password: "qwerty",
 			wantCode: http.StatusUnprocessableEntity,
 		},
 	}
@@ -80,7 +80,7 @@ func TestRegisterUser(t *testing.T) {
 			if err != nil {
 				t.Fatal("wrong input data")
 			}
-			if tt.name == "Wrong input" {
+			if tt.name == "wrong input" {
 				b = append(b, 'a')
 			}
 
